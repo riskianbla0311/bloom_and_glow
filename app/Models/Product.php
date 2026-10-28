@@ -1,0 +1,29 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Product extends Model
+{
+    protected $fillable = [
+        'category_id', 'sku', 'name', 'image_url', 'purchase_price', 
+        'selling_price', 'stock', 'minimum_stock'
+    ];
+
+    // Relasi ke Category ini yang dicari Laravel
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function purchaseItems()
+    {
+        return $this->hasMany(PurchaseItem::class);
+    }
+
+    public function saleItems()
+    {
+        return $this->hasMany(SaleItem::class);
+    }
+}
